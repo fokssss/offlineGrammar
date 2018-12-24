@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="offlineGrammar:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/offlineGrammar_jar</output-path>
+    <root id="archive" name="offlineGrammar.jar">
+      <element id="module-output" name="offlineGrammar" />
+    </root>
+  </artifact>
+</component>

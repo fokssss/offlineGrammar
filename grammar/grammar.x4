@@ -1,0 +1,9 @@
+@lookup=查看|查找|看看|看一看|看一下|找一下|找找|查一查|查查看
+@keyword=的
+@content=手机|电话|联系方式|信息|上级
+@to=给
+@sendmsg=发消息|发短信|发讯息
+@name=*
+expr1 = <lookup><name><keyword><content>
+expr2 = <lookup><name><content>
+expr3 = <to><name><sendmsg>
