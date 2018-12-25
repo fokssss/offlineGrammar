@@ -5,7 +5,8 @@ import java.util.*
 /**
  * Created by xyy on 2018/11/9.
  */
-class X4Result constructor(var expr: String = "", var data: String = "") {
+class X4Result constructor(var exprName: String, var expr: String = "", var data: String = "") {
+
 
     private var innerValue = HashMap<String, String>()
 

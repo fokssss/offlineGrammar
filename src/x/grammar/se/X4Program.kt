@@ -32,7 +32,7 @@ class X4Program {
     fun addExpression(expr: String): X4Program {
 
         exprs.add(
-                if (expr.indexOf("=") > 0)
+                if (expr.indexOf("=") > 0  && !expr.startsWith("#"))
                     expr else "#$expr")
         return this
     }

@@ -24,11 +24,14 @@ object Main {
 
         var prog = X4Program().addVariable("lookup", "查找", "看看")
                 .addVariable("name")
+                .addVariable("apple","小苹果")
                 .addExpression("<lookup><name>")
+                .addExpression("aaa = <name><apple>")
 
         val ll = X4Lexer.build(prog)
-        System.out.println(ll.find("你是我的小苹果"))
-        System.out.println(ll.find("查找王小妹"))
+        System.out.println(ll.find("你是我的小苹果")?.expr)
+        System.out.println(ll.find("查有人找在有人")?.expr)
+        System.out.println(ll.find("查找王小妹")?.expr)
 
 //        val matcher = X4HotMatcher(lexer, hotWord)
 //        val ssss = arrayOf("dd", "ss")

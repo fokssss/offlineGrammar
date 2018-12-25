@@ -65,6 +65,8 @@ class X4Lexer private constructor() {
 
     companion object {
 
+        private const val PREFIX = "noname"
+
         @Throws(IOException::class)
         fun build(stream: InputStream): X4Lexer {
             return build(InputStreamReader(stream))
@@ -72,16 +74,18 @@ class X4Lexer private constructor() {
 
         @JvmStatic
         fun build(program: X4Program): X4Lexer {
+            var seq = 0
             val rs = X4Lexer()
             for (item in program.getVariableCollection()) {
                 val w = X4Words.accept(item.substring(1, item.length))
                 rs.variable.put(w.name, w)
             }
             for (s in program.getExpressionCollection()) {
+                seq++
                 rs.expressions.add(
-                        if (s.startsWith("#"))
-                            X4Expression.accept("a=" + s.substring(1, s.length), rs)
-                        else
+                        if (s.startsWith("#")) {
+                            X4Expression.accept("$PREFIX$seq="+ s.substring(1, s.length), rs)
+                        } else
                             X4Expression.accept(s, rs)
                 )
             }
@@ -90,10 +94,12 @@ class X4Lexer private constructor() {
 
         @Throws(IOException::class)
         fun build(r: Reader): X4Lexer {
+            var seq = 0
             val rs = X4Lexer()
             val reader = BufferedReader(r)
             reader.use {
                 while (true) {
+                    seq++
                     var s = reader.readLine() ?: break
                     s = s.trim { it <= ' ' }
                     if (s.isEmpty()) {
@@ -105,7 +111,7 @@ class X4Lexer private constructor() {
                         continue
                     }
                     if (s.startsWith("#")) {
-                        val ss = "a=" + s.substring(1, s.length)
+                        val ss = "$PREFIX$seq=" + s.substring(1, s.length)
                         val expression = X4Expression.accept(ss, rs)
                         rs.expressions.add(expression)
                         continue

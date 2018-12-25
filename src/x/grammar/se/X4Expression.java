@@ -119,7 +119,7 @@ public class X4Expression {
         Pattern pp = Pattern.compile(line);
         Matcher finder = pp.matcher(data);
         if (finder.find()) {
-            X4Result rs = new X4Result(line, data);
+            X4Result rs = new X4Result(this.getName(),line, data);
             for (int x = 1; x <= index.size(); x++) {
                 rs.putValue(index.get(x - 1), finder.group(x));
             }
